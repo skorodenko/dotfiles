@@ -1,0 +1,6 @@
+require("config.neovide")
+require("config.options")
+require("config.autocmds")
+require("config.lazy")
+require("config.custom")
+require("config.lsp")

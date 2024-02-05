@@ -1,0 +1,71 @@
+[Application settings for Code]
+Description=Application settings for Code
+clientmachine=localhost
+disableglobalshortcuts=true
+opacityactive=85
+opacityactiverule=2
+title=Ghostrunner
+wmclass=code Code
+wmclasscomplete=true
+wmclassmatch=1
+
+[Application settings for Spotify]
+Description=Application settings for Spotify
+clientmachine=localhost
+disableglobalshortcuts=true
+opacityactive=85
+opacityactiverule=2
+title=Ghostrunner
+wmclass=spotify Spotify
+wmclasscomplete=true
+wmclassmatch=1
+
+[Application settings for cantata]
+Description=Application settings for cantata
+opacityactive=85
+opacityactiverule=2
+wmclass=cantata
+wmclassmatch=1
+
+[Application settings for org.kde.dolphin]
+Description=Application settings for org.kde.dolphin
+clientmachine=localhost
+disableglobalshortcuts=true
+opacityactive=85
+opacityactiverule=2
+title=Ghostrunner
+wmclass=dolphin org.kde.dolphin
+wmclasscomplete=true
+wmclassmatch=1
+
+[Application settings for org.mozilla.firefox]
+Description=Application settings for org.mozilla.firefox
+clientmachine=localhost
+disableglobalshortcuts=true
+opacityactive=85
+opacityactiverule=2
+title=Ghostrunner
+wmclass=\sorg.mozilla.firefox
+wmclasscomplete=true
+wmclassmatch=1
+
+[Application settings for systemsettings]
+Description=Application settings for systemsettings
+clientmachine=localhost
+disableglobalshortcuts=true
+opacityactive=85
+opacityactiverule=2
+title=Ghostrunner
+wmclass=systemsettings
+wmclassmatch=1
+
+[Window settings for ghostrunner-win64-shipping.exe]
+Description=Window settings for ghostrunner-win64-shipping.exe
+clientmachine=localhost
+disableglobalshortcuts=true
+disableglobalshortcutsrule=2
+title=Ghostrunner
+titlematch=1
+types=1
+wmclass=ghostrunner-win64-shipping.exe
+wmclassmatch=1
