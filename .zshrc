@@ -10,14 +10,16 @@ alias dbox="distrobox"
 #alias docker="sudo docker"
 
 plugins=(
+  cp
   git
-  archlinux
+  sudo
+  tmux
   docker
   vscode
-  colorize
-  cp
-  sudo
   poetry
+  history
+  colorize
+  archlinux
   zsh-syntax-highlighting
 )
 
@@ -35,10 +37,20 @@ fi
 
 source $ZSH/oh-my-zsh.sh
 
-#pyenv
+# exa
+if [ -x "$(command -v exa)" ]; then
+    alias l="exa --long --group"
+    alias la="exa --long --all --group"
+    alias ls="exa"
+fi
+
+# pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+
+# zoxide
+eval "$(zoxide init zsh)"
 
 # Autocmpletions
 eval "$(register-python-argcomplete pipx)"
