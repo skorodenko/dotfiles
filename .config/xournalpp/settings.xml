@@ -6,7 +6,7 @@
   <property name="pressureMultiplier" value="1"/>
   <property name="zoomGesturesEnabled" value="true"/>
   <property name="selectedToolbar" value="Xournal++"/>
-  <property name="lastSavePath" value="/home/rinkuro/SecondDesktop/Study/OptimalControl/HW"/>
+  <property name="lastSavePath" value="/home/rinkuro/SecondDesktop/Study/SystemAnalysis"/>
   <property name="lastOpenPath" value=""/>
   <property name="lastImagePath" value=""/>
   <property name="edgePanSpeed" value="20"/>
@@ -256,7 +256,7 @@
     </data>
     <data name="eraser">
       <attribute name="drawingType" type="string" value="default"/>
-      <attribute name="size" type="string" value="THIN"/>
+      <attribute name="size" type="string" value="MEDIUM"/>
       <attribute name="type" type="string" value="deleteStroke"/>
     </data>
     <data name="hand">
@@ -273,11 +273,11 @@
       <attribute name="drawingType" type="string" value="default"/>
     </data>
     <data name="pen">
-      <attribute name="color" type="hex" value="ffffff"/>
+      <attribute name="color" type="hex" value="c296ea"/>
       <attribute name="drawingType" type="string" value="default"/>
       <attribute name="fill" type="int" value="0"/>
       <attribute name="fillAlpha" type="int" value="128"/>
-      <attribute name="size" type="string" value="MEDIUM"/>
+      <attribute name="size" type="string" value="THIN"/>
       <attribute name="style" type="string" value="plain"/>
     </data>
     <data name="playObject">
