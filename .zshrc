@@ -55,4 +55,4 @@ eval "$(zoxide init zsh)"
 # Autocmpletions
 eval "$(register-python-argcomplete pipx)"
 
-neofetch
+fastfetch
