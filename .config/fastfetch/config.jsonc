@@ -78,10 +78,10 @@
             "key": "  ",
             "format": "{1}@{2}"
         },
-        {
-            "type": "os",
-            "key": "  " // Just get your distro's logo off nerdfonts.com
-        },
+//        {
+//            "type": "os",
+//            "key": "  " // Just get your distro's logo off nerdfonts.com
+//        },
         {
             "type": "kernel",
             "key": "  ",
