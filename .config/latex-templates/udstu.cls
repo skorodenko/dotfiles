@@ -34,18 +34,23 @@
 \RequirePackage{booktabs}
 \RequirePackage[section]{placeins}
 \RequirePackage{flafter} % пакет гарантує, що рисунок чи таблиця ніколи не з'являться раніше посилання на самих себе
-% \RequirePackage{caption} % пакет для персоналізації заголовків рисунків та таблиць
+\RequirePackage{caption} % пакет для персоналізації заголовків рисунків та таблиць
 \RequirePackage{xtab} % пакет для довгих таблиць
 \RequirePackage{longtable} % пакет для довгих таблиць
 \RequirePackage{tabularx}
 \RequirePackage{multirow} % пакет для об'єднання рядків таблиці
 \RequirePackage{array} % пакет для вирівнювання всередині таблиці
 
-% пакет для бібліографії
-\RequirePackage[style=german]{csquotes}
+% пакети для бібліографії
+% \RequirePackage[style=russian]{csquotes}
 \RequirePackage[
     backend=biber,
-    sorting=nyt,
+    sorting=none,
+    doi=false,
+    isbn=false,
+    url=false,
+    eprint=false,
+    style=gost-numeric,
 ]{biblatex}
 
 % пакети для форматування відступів та полів
@@ -86,6 +91,22 @@
 
 % пакет для параметричних команд
 \RequirePackage{xkeyval}
+
+% Пакет для відображення сортованих списків
+\RequirePackage{datatool}% http://ctan.org/pkg/datatool
+\newcommand{\sortitem}[1]{%
+  \DTLnewrow{list}% Create a new entry
+  \DTLnewdbentry{list}{description}{#1}% Add entry as description
+}
+\newenvironment{sortedlist}{%
+  \DTLifdbexists{list}{\DTLcleardb{list}}{\DTLnewdb{list}}% Create new/discard old list
+}{%
+  \DTLsort{description}{list}% Sort list
+  \begin{itemize}[\ ]%
+    \DTLforeach*{list}{\theDesc=description}{%
+      \item \theDesc}% Print each item
+  \end{itemize}%
+}
 
 % пакет для гіперпосилань у змісті
 \RequirePackage[hidelinks]{hyperref}
@@ -134,6 +155,7 @@
 % хитра команда для створення додатків
 \newcounter{appendnum}
 \newcommand{\append}[1]{
+\clearpage
 \setcounter{chapter}{0}
 \setcounter{figure}{0}
 \setcounter{table}{0}
@@ -141,12 +163,12 @@
 \setcounter{subsection}{0}
 \titleformat{\chapter}{\centering\normalsize}{\hspace{1cm}\thechapter}{0.5em}{}
 \addcontentsline{toc}{chapter}{Додаток \Asbuk{appendnum}\ #1}
-\chapter*{Додаток \AsbukTrad{appendnum}\\#1}
+\chapter*{Додаток \Asbuk{appendnum}\\#1}
 \addvspace{-28pt}
-\renewcommand{\thefigure}{\AsbukTrad{appendnum}.\arabic{figure} }
-\renewcommand{\thetable}{\AsbukTrad{appendnum}.\arabic{table} }
-\renewcommand{\thesection}{\AsbukTrad{appendnum}.\arabic{section} }
-\renewcommand{\thesubsection}{\AsbukTrad{appendnum}.\arabic{section}.\arabic{subsection} }
+\renewcommand{\thefigure}{\Asbuk{appendnum}.\arabic{figure} }
+\renewcommand{\thetable}{\Asbuk{appendnum}.\arabic{table} }
+\renewcommand{\thesection}{\Asbuk{appendnum}.\arabic{section} }
+\renewcommand{\thesubsection}{\Asbuk{appendnum}.\arabic{section}.\arabic{subsection} }
 }
 % прибираємо недопустимі букви з позначення додатків
 \pretocmd\append{
@@ -266,11 +288,11 @@
 \renewcommand{\cftsubsecleader}{\cftdotfill{\cftsubsecdotsep}} % чим заповнювати проміжок від заголовку до номеру сторінки (точками)
 
 % заголовки таблиць, рисунків і лістингів
-\DeclareCaptionLabelFormat{tablecap}{Табл. #2}
-\DeclareCaptionLabelFormat{figurecap}{Рис. #2}
+\DeclareCaptionLabelFormat{tablecap}{Таблиця #2}
+\DeclareCaptionLabelFormat{figurecap}{Рисунок #2}
 \DeclareCaptionLabelFormat{listing}{Лістинг файлу #2}
 
-\captionsetup[table]{margin=0pt,singlelinecheck=false, justification=centering, labelsep=endash, labelformat=tablecap, font = {stretch = 1.5}, belowskip=18pt, aboveskip=3pt} % формат для таблиць
+\captionsetup[table]{margin=0pt,singlelinecheck=false, justification=justified, labelsep=endash, labelformat=tablecap, font = {stretch = 1.5}, belowskip=4pt, aboveskip=3pt} % формат для таблиць
 \captionsetup[figure]{justification=centering, labelsep=endash, labelformat=figurecap, font = {stretch = 1.5}} % формат для рисунків
 \captionsetup[listing]{labelformat=listing}
 
@@ -493,39 +515,45 @@
 \define@cmdkey[Work]{Title}{HeadOfDepartment}{}
 \define@cmdkey[Work]{Title}{ConsultDegree}{}
 \define@cmdkey[Work]{Title}{ConsultName}{}
+\define@cmdkey[Work]{Title}{RecenzDegree}{}
+\define@cmdkey[Work]{Title}{RecenzName}{}
 \newcommand{\makediplomatitle}[1]{
 	  \setkeys[Work]{Title}{#1}
 	  \thispagestyle{empty}
 	  \setlength{\parindent}{0cm}
 		\begingroup\centering % центрування
 			\setfontsize{14}
-			\MakeUppercase{Національний технічний університет України}
+			\textbf{\MakeUppercase{Національний технічний університет України}}
 
-			\MakeUppercase{\guillemotleft Київський політехнічний інститут}
+			\textbf{\MakeUppercase{\guillemotleft Київський політехнічний інститут}}
 
-			\MakeUppercase{імені Ігоря Сікорського\guillemotright}
+			\textbf{\MakeUppercase{імені Ігоря Сікорського\guillemotright}}
 
-			Факультет прикладної математики
+			\textbf{Факультет прикладної математики}
 
-			Кафедра прикладної математики
+			\textbf{Кафедра прикладної математики}
 
 		%\vfill
 
+		\begin{onehalfspace}
 		\begin{flushright}
 		\invcommas{До захисту допущено} \\
 		Завідувач кафедри \cmdWork@Title@Department \\
 		\cmdWork@Title@HeadOfDepartment \\
 		\invcommas{\_\_\_} \_\_\_\_\_\_\_\_\_\_ \the\year
 		\end{flushright}
+		\end{onehalfspace}
 
 		%\vfill
-
+		\begin{singlespace}
 		\cmdWork@Title@Title
+		\end{singlespace}
 
 		\endgroup
 		%\vfill
 
 
+		\begin{doublespace}
 		\begin{singlespace}
 
 		\ifWork@Title@StudentMale
@@ -566,11 +594,27 @@
 
 		\end{singlespace}
 
-		\begin{flushright}
-		Засвідчую, що в цьому звіті немає запозичень \\
-		із праць інших авторів без відповідних посилань. \\
-		Студент \_\_\_\_\_\_\_\_\_\_
-		\end{flushright}
+		\begin{singlespace}
+
+		Рецензент:
+
+		\cmdWork@Title@RecenzDegree
+
+		\cmdWork@Title@RecenzName \hfill 	\_\_\_\_\_\_\_\_\_\_
+
+		\end{singlespace}
+
+		\begin{singlespace}
+		\hfill
+		\begin{tabular}{@{}l@{}}
+		Засвідчую, що в цій дипломній роботі \\
+		немає запозичень із праць інших авторів \\
+		без відповідних посилань \\
+		\cmdWork@Title@StudentName \ \ \ \  \_\_\_\_\_\_\_\_\_\_
+		\end{tabular}
+		\end{singlespace}
+
+		\end{doublespace}
 
 		\vfill
 
@@ -585,15 +629,15 @@
 	  \setlength{\parindent}{0cm}
 		\begingroup\centering % центрування
 			\setfontsize{14}
-			\MakeUppercase{Національний технічний університет України}
+			\textbf{\MakeUppercase{Національний технічний університет України}}
 
-			\MakeUppercase{\guillemotleft Київський політехнічний інститут}
+			\textbf{\MakeUppercase{\guillemotleft Київський політехнічний інститут}}
 
-			\MakeUppercase{імені Ігоря Сікорського\guillemotright}
+			\textbf{\MakeUppercase{імені Ігоря Сікорського\guillemotright}}
 
-			Факультет прикладної математики
+			\textbf{Факультет прикладної математики}
 
-			Кафедра прикладної математики
+			\textbf{Кафедра прикладної математики}
 
 		%\vfill
 		\begin{flushleft}
@@ -602,17 +646,18 @@
 		Освітньо-професійна програма \invcommas{Наука про дані та математичне моделювання} \\
 		\end{flushleft}
 
-		\begin{flushright}
-		\invcommas{Затверджую} \\
+		\hfill
+		\begin{tabular}{@{}l@{}}
+		\MakeUppercase{Затверджую} \\
 		Завідувач кафедри \cmdWork@Title@Department \\
 		\cmdWork@Title@HeadOfDepartment \\
 		\invcommas{\_\_\_} \_\_\_\_\_\_\_\_\_\_ \the\year
-		\end{flushright}
+		\end{tabular}
 
 		%\vfill
 
-		{\large ЗАВДАННЯ} \\
-		на дипломну роботу \\
+		\textbf{\large ЗАВДАННЯ} \\
+		\textbf{на дипломну роботу студенту} \\
 		Скороденку Дмитру Олександровичу
 
 		\endgroup

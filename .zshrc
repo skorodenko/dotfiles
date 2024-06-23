@@ -5,7 +5,8 @@ export TERM="xterm-256color"
 export ZSH=/usr/share/oh-my-zsh
 export PATH="$PATH:/home/rinkuro/.local/bin"
 
-alias vim="/home/rinkuro/.local/bin/lvim"
+#alias vim="/home/rinkuro/.local/bin/lvim"
+alias vim="/usr/bin/nvim"
 alias dbox="distrobox"
 #alias docker="sudo docker"
 

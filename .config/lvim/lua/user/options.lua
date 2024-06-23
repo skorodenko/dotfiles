@@ -1,5 +1,5 @@
 -- Theme config
-lvim.colorscheme = "gruvbox-material"
+lvim.colorscheme = "catppuccin-mocha"
 lvim.transparent_window = true
 vim.g.gruvbox_material_background = "hard"
 vim.g.gruvbox_material_foreground = "hard"
