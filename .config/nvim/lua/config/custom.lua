@@ -5,9 +5,6 @@ vim.cmd.colorscheme("onedark_dark")
 require("which-key").register({
     s = {
         name = "System",
-        y = { "\"+y", "Yank (system buffer)" },
-        Y = { "\"+yy", "YankYank (system buffer)" },
-        p = { "\"+p", "Paste (system buffer)" },
         M = { "<cmd>Mason<cr>", "Open Mason" },
         L = { "<cmd>Lazy<cr>", "Open Lazy" },
         t = { "<cmd>ToggleTerm<cr>", "Toggle terminal" }
@@ -21,9 +18,7 @@ require("which-key").register({
     },
     e = {
         name = "Explorer",
-        e = { "<cmd>NvimTreeToggle<cr>", "Toggle tree" },
-        f = { "<cmd>NvimTreeFocus<cr>", "Focus tree" },
-        c = { "<cmd>NvimTreeCollapse<cr>", "Collapse tree" },
+        e = { "<cmd>Neotree toggle<cr>", "Toggle tree" },
     },
     l = {
         name = "LSP",

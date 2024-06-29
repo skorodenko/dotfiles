@@ -20,7 +20,17 @@ return {
     init = function()
         vim.g.coq_settings = {
             auto_start = true, -- if you want to start COQ at startup
-            -- Your COQ settings here
+            keymap = {
+                manual_complete = "<a-space>",
+            },
+            display = {
+                statusline = {
+                    helo = false,
+                },
+                preview = {
+                    border = "double",
+                }
+            }
         }
     end,
     config = function()

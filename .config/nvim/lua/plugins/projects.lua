@@ -5,6 +5,7 @@ return {
             "~/Sandbox/*",
             "~/.config/*",
         },
+        dashboard_mode = true,
     },
     init = function()
         -- enable saving the state of plugins in the session

@@ -1,6 +1,9 @@
 -- set mapping for leader
 vim.g.mapleader = " "
 
+-- sync clipboards
+vim.opt.clipboard = "unnamedplus"
+
 -- enable line number
 vim.opt.number = true
 
