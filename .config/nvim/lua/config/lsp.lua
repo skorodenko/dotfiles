@@ -50,3 +50,8 @@ lsp.rust_analyzer.setup(coq.lsp_ensure_capabilities({
 lsp.qmlls.setup(coq.lsp_ensure_capabilities({
     cmd = { "qmlls6" }
 }))
+
+
+lsp.taplo.setup(coq.lsp_ensure_capabilities({}))
+
+
