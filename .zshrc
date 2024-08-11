@@ -8,7 +8,7 @@ export PATH="$PATH:/home/rinkuro/.local/bin"
 #alias vim="/home/rinkuro/.local/bin/lvim"
 alias vim="/usr/bin/nvim"
 alias dbox="distrobox"
-#alias docker="sudo docker"
+alias docker="sudo docker"
 
 plugins=(
   cp
@@ -24,8 +24,8 @@ plugins=(
   zsh-syntax-highlighting
 )
 
-autoload -U bashcompinit
-bashcompinit
+autoload -U compinit
+compinit
 
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
 
@@ -54,9 +54,6 @@ if [ -x "$(command -v exa)" ]; then
     alias la="exa --long --all --group"
     alias ls="exa"
 fi
-
-# Aliases
-alias docker="sudo docker"
 
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
