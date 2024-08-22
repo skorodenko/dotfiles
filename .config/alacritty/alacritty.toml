@@ -10,7 +10,7 @@ program = "/usr/bin/zsh"
 args = ["-l"]
 
 [window]
-opacity = 0.85
+opacity = 0.9
 blur = true
 padding = {x = 8, y = 4}
 dynamic_padding = true
