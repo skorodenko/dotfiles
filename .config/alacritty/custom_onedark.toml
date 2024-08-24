@@ -1,4 +1,3 @@
-
 # Colors - https://github.com/olimorris/onedarkpro.nvim
 [colors.primary]
 background  = "#000000"
@@ -25,9 +24,5 @@ cyan        = "#4bced8"
 white       = "#c8cdd5"
 
 [colors.cursor]
-text        = "CellBackground"
-cursor      = "CellForeground" # syntax-cursor-color
-
-[colors.selection]
 text        = "CellForeground"
-background  = "#434852"
+cursor      = "#abb2bf" # syntax-cursor-color

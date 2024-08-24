@@ -10,8 +10,6 @@ program = "/usr/bin/zsh"
 args = ["-l"]
 
 [window]
-#opacity = 0.9
-#blur = true
 padding = {x = 8, y = 4}
 dynamic_padding = true
 
@@ -34,5 +32,5 @@ style = "Italic"
 family = "Iosevka Nerd Font"
 style = "Bold Italic"
 
-[cursor]
-style = "Beam"
+[cursor.style]
+shape = "Block"
