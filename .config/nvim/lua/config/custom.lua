@@ -18,4 +18,7 @@ require("which-key").add({
     { "<leader>p", group = "Project" },
     { "<leader>pf", "<cmd>Telescope neovim-project discover<cr>", desc = "Project discover" },
     { "<leader>ph", "<cmd>Telescope neovim-project history<cr>", desc = "Project history" },
+    { "<leader>g", group = "Git" },
+    { "<leader>gp", "<cmd>Gitsigns preview_hunk<cr>", desc = "Preview hunk" },
+    { "<leader>gt", "<cmd>Gitsigns toggle_signs<cr>", desc = "Toggle git signs" },
 })
