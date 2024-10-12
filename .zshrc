@@ -21,7 +21,6 @@ plugins=(
   history
   colorize
   archlinux
-  zsh-syntax-highlighting
 )
 
 autoload -U compinit
@@ -55,6 +54,12 @@ if [ -x "$(command -v exa)" ]; then
     alias ls="exa"
 fi
 
+# poetry
+export POETRY_VIRTUALENVS_IN_PROJECT=true
+
+# pipx completions
+eval "$(register-python-argcomplete pipx)"
+
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
@@ -63,7 +68,6 @@ eval "$(pyenv init -)"
 # zoxide
 eval "$(zoxide init zsh)"
 
-# Autocmpletions
-eval "$(register-python-argcomplete pipx)"
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 fastfetch

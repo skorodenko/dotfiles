@@ -140,10 +140,10 @@
             "key": "  󰩟",
             "compact": true
         },
-        {
-            "type": "publicip",
-            "key": "  󰩠"
-        },
+//        {
+//            "type": "publicip",
+//            "key": "  󰩠"
+//        },
 //        {
 //            "type": "wifi",
 //            "key": "  ",

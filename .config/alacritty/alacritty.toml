@@ -5,10 +5,6 @@ import = [
 
 live_config_reload = true
 
-[shell]
-program = "/usr/bin/zsh"
-args = ["-l"]
-
 [window]
 blur = true
 opacity = 0.98
