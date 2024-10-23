@@ -1,8 +1,8 @@
+[general]
 import = [
 #  "~/.config/alacritty/themes/themes/one_dark.toml"
   "~/.config/alacritty/custom_onedark.toml"
 ]
-
 live_config_reload = true
 
 [window]
