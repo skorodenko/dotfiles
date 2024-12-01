@@ -19,6 +19,7 @@ plugins=(
   vscode
   poetry
   history
+  zoxide
   colorize
   archlinux
 )
