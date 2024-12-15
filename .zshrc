@@ -1,7 +1,6 @@
 ZSH=/usr/share/oh-my-zsh/
 ZSH_THEME="refined"
 
-export TERM="xterm-256color"
 export ZSH=/usr/share/oh-my-zsh
 export PATH="$PATH:/home/rinkuro/.local/bin"
 
@@ -69,6 +68,13 @@ eval "$(pyenv init -)"
 # zoxide
 eval "$(zoxide init zsh)"
 
+# zsh syntax highlightling
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# tmux integration
+if [ -z "$TMUX" ] && ([ "$TERM" = "xterm-kitty" ] || [ "$TERM" = "alacritty" ]); then
+    cur_time=$(date +%s)
+    exec tmux new-session -s $cur_time && exit $? && tmux kill-session -t $cur_time;
+fi
 
 fastfetch

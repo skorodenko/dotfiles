@@ -6,13 +6,14 @@ lsp.ruff.setup({})
 lsp.pyright.setup({
     settings = {
         pyright = {
-            -- Using Ruff's import organizer
             disableOrganizeImports = true,
+            disableTaggedHints = true,
         },
         python = {
             analysis = {
-                -- Ignore all files for analysis to exclusively use Ruff for linting
-                ignore = { '*' },
+                diagnosticSeverityOverrides = {
+                    reportUndefinedVariable = "none",
+                },
             },
         },
     },
@@ -53,5 +54,3 @@ lsp.qmlls.setup(coq.lsp_ensure_capabilities({
 
 
 lsp.taplo.setup(coq.lsp_ensure_capabilities({}))
-
-
