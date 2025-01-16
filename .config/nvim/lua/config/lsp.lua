@@ -2,8 +2,7 @@ local lsp = require("lspconfig")
 local coq = require("coq")
 
 
-lsp.ruff.setup({})
-lsp.pyright.setup({
+lsp.pyright.setup(coq.lsp_ensure_capabilities({
     settings = {
         pyright = {
             disableOrganizeImports = true,
@@ -17,7 +16,18 @@ lsp.pyright.setup({
             },
         },
     },
-})
+}))
+lsp.ruff.setup(coq.lsp_ensure_capabilities({
+    on_attach = function(client, buffer)
+        if client.name == "ruff_lsp" then
+            -- Disable hover in favor of Pyright
+            client.server_capabilities.hoverProvider = false
+        end
+    end
+}))
+
+
+lsp.marksman.setup(coq.lsp_ensure_capabilities({}))
 
 
 lsp.lua_ls.setup(coq.lsp_ensure_capabilities({
