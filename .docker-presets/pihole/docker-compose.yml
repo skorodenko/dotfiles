@@ -9,6 +9,7 @@ services:
       - "53:53/udp"
       #  - "67:67/udp" # Only required if you are using Pi-hole as your DHCP server
       - "80:80/tcp"
+      - "443:443/tcp"
     environment:
       TZ: "Europe/Kyiv"
     # Volumes store your data between container upgrades
