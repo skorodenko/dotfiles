@@ -10,7 +10,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Etc/UTC
-      - SERVERURL=111.111.222.123 # Replace with your public IP or DDNS
+      - SERVERURL=31.43.129.165 # Replace with your public IP or DDNS
       - SERVERPORT=51820
       - PEERS=1 # Number of clients
       #- PEERDNS=1.1.1.1 # or your preferred DNS
