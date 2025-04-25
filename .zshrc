@@ -110,4 +110,6 @@ fi
 # fastfetch
 if [[ $(command -v fastfetch) ]]; then 
     fastfetch
+elif [[ $(command -v neofetch) ]]; then
+    neofetch
 fi

@@ -1,10 +1,13 @@
-http://pihole.homelab.local {
-    redir / /admin
-    reverse_proxy 10.8.1.3:80
+http://dns.homelab.local {
+    reverse_proxy 10.8.1.3:5380
 }
 
 http://portainer.homelab.local {
     reverse_proxy 10.8.1.5:9000
+}
+
+http://immich.homelab.local {
+    reverse_proxy 10.8.1.10:2283
 }
 
 http://wg.homelab.local {
