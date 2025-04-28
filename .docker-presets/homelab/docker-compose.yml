@@ -1,8 +1,33 @@
 services:
+
+  excalidraw:
+    image: jauderho/excalidraw
+    restart: unless-stopped
+    networks:
+      vpnet:
+        ipv4_address: 10.8.1.8
   
+  n8n:
+    image: docker.n8n.io/n8nio/n8n
+    container_name: n8n
+    restart: unless-stopped
+    volumes:
+      - n8n_data:/.n8n
+    networks:
+      vpnet:
+        ipv4_address: 10.8.1.7
+
+  omni-tools:
+    image: iib0011/omni-tools:latest
+    container_name: omni-tools
+    restart: unless-stopped
+    networks:
+      vpnet:
+        ipv4_address: 10.8.1.6
+
   portainer:
     container_name: portainer
-    image: portainer/portainer-ce:lts
+    image: portainer/portainer-ce:latest
     restart: always
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
@@ -35,21 +60,23 @@ services:
     image: technitium/dns-server:latest
     # For DHCP deployments, use "host" network mode and remove all the port mappings, including the ports array by commenting them
     # network_mode: "host"
+    env_file:
+      - .env
     ports:
       - "5380:5380/tcp" #DNS web console (HTTP)
       # - "53443:53443/tcp" #DNS web console (HTTPS)
       - "53:53/udp" #DNS service
       - "53:53/tcp" #DNS service
-      # - "853:853/udp" #DNS-over-QUIC service
-      # - "853:853/tcp" #DNS-over-TLS service
+      - "853:853/udp" #DNS-over-QUIC service
+      - "853:853/tcp" #DNS-over-TLS service
       # - "443:443/udp" #DNS-over-HTTPS service (HTTP/3)
       # - "443:443/tcp" #DNS-over-HTTPS service (HTTP/1.1, HTTP/2)
       # - "80:80/tcp" #DNS-over-HTTP service (use with reverse proxy or certbot certificate renewal)
-      # - "8053:8053/tcp" #DNS-over-HTTP service (use with reverse proxy)
+      - "8053:8053/tcp" #DNS-over-HTTP service (use with reverse proxy)
       # - "67:67/udp" #DHCP service
     environment:
       - DNS_SERVER_DOMAIN=dns-server #The primary domain name used by this DNS Server to identify itself.
-      # - DNS_SERVER_ADMIN_PASSWORD=password #DNS web console admin user password.
+      - DNS_SERVER_ADMIN_PASSWORD=${USER_PASSWORD} #DNS web console admin user password.
       # - DNS_SERVER_ADMIN_PASSWORD_FILE=password.txt #The path to a file that contains a plain text password for the DNS web console admin user.
       # - DNS_SERVER_PREFER_IPV6=false #DNS Server will use IPv6 for querying whenever possible with this option enabled.
       # - DNS_SERVER_WEB_SERVICE_LOCAL_ADDRESSES=172.17.0.1,127.0.0.1 #Comma separated list of network interface IP addresses that you want the web service to listen on for requests. The "172.17.0.1" address is the built-in Docker bridge. The "[::]" is the default value if not specified. Note! This must be used only with "host" network mode.
@@ -80,12 +107,14 @@ services:
     env_file:
       - .env
     environment:
+      - PASSWORD_HASH=${WG_PASSWORD_HASH}
       - WG_HOST=${ROUTER_EXTERNAL}
       - WG_DEFAULT_DNS=${ROUTER_LOCAL}
       - WG_DEFAULT_ADDRESS=10.8.0.x
+      - WG_ALLOWED_IPS=10.8.1.0/24
       - WG_POST_UP=iptables -A INPUT -p udp -m udp --dport 51820 -j ACCEPT; iptables -A FORWARD -i wg0 -j ACCEPT; iptables -A FORWARD -o wg0 -j ACCEPT;
       - WG_POST_DOWN=iptables -D INPUT -p udp -m udp --dport 51820 -j ACCEPT; iptables -D FORWARD -i wg0 -j ACCEPT; iptables -D FORWARD -o wg0 -j ACCEPT;
-    image: ghcr.io/wg-easy/wg-easy
+    image: ghcr.io/wg-easy/wg-easy:latest
     volumes:
       - /wg-easy:/etc/wireguard
     ports:
@@ -112,3 +141,4 @@ volumes:
   portainer_data:
   caddy_data:
   caddy_config:
+  n8n_data:
