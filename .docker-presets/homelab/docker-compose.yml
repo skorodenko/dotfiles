@@ -83,7 +83,6 @@ services:
       - WG_HOST=${ROUTER_EXTERNAL}
       - WG_DEFAULT_DNS=${ROUTER_LOCAL}
       - WG_DEFAULT_ADDRESS=10.8.0.x
-      - WG_ALLOWED_IPS=10.8.1.0/24
       - WG_POST_UP=iptables -A INPUT -p udp -m udp --dport 51820 -j ACCEPT; iptables -A FORWARD -i wg0 -j ACCEPT; iptables -A FORWARD -o wg0 -j ACCEPT;
       - WG_POST_DOWN=iptables -D INPUT -p udp -m udp --dport 51820 -j ACCEPT; iptables -D FORWARD -i wg0 -j ACCEPT; iptables -D FORWARD -o wg0 -j ACCEPT;
     image: ghcr.io/wg-easy/wg-easy
