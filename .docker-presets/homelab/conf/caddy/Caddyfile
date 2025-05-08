@@ -40,5 +40,5 @@ https://vw.homelab.local {
 
 https://ha.homelab.local {
     tls internal
-    reverse_proxy 10.8.1.10:8123
+    reverse_proxy 10.8.1.11:8123
 }
