@@ -11,7 +11,7 @@ services:
     privileged: true
     networks:
       vpnet:
-        ipv4_address: 10.8.1.10
+        ipv4_address: 10.8.1.11
 
   vaultwarden:
     image: vaultwarden/server:latest
