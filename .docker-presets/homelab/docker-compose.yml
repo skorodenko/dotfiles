@@ -1,5 +1,18 @@
 services:
 
+  homeassistant:
+    container_name: homeassistant
+    image: ghcr.io/home-assistant/home-assistant:stable
+    volumes:
+      - /home-assistant-conf:/config
+      - /etc/localtime:/etc/localtime:ro
+      - /run/dbus:/run/dbus:ro
+    restart: unless-stopped
+    privileged: true
+    networks:
+      vpnet:
+        ipv4_address: 10.8.1.10
+
   vaultwarden:
     image: vaultwarden/server:latest
     container_name: vaultwarden
