@@ -1,5 +1,17 @@
 services:
 
+  vaultwarden:
+    image: vaultwarden/server:latest
+    container_name: vaultwarden
+    restart: unless-stopped
+    environment:
+      DOMAIN: "https://vw.homelab.local"
+    volumes:
+      - /vw-data/:/data/
+    networks:
+      vpnet:
+        ipv4_address: 10.8.1.9
+
   excalidraw:
     image: jauderho/excalidraw
     restart: unless-stopped

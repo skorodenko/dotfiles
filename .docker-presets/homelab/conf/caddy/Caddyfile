@@ -32,3 +32,8 @@ https://draw.homelab.local {
     tls internal
     reverse_proxy 10.8.1.8:80
 }
+
+https://vw.homelab.local {
+    tls internal
+    reverse_proxy 10.8.1.9:80
+}
