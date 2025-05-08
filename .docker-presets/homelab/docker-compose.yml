@@ -136,7 +136,7 @@ services:
       - global_dns=${ROUTER_LOCAL}
       - public_ip=${ROUTER_EXTERNAL}
     ports:
-      - 51820:51820/udp
+      - 51820-51830:51820-51830/udp
     volumes:
       - /wgd-conf:/etc/wireguard
       - /wgd-data:/data
