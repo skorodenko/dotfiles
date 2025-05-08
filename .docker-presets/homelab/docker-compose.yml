@@ -73,8 +73,8 @@ services:
       - "443:443/udp"
     volumes:
       - $PWD/conf/caddy:/etc/caddy
-      - caddy_data:/data
-      - caddy_config:/config
+      - /caddy_data:/data
+      - /caddy_config:/config
     networks:
       vpnet:
         ipv4_address: 10.8.1.4
@@ -164,6 +164,4 @@ networks:
 volumes:
   dns_config:
   portainer_data:
-  caddy_data:
-  caddy_config:
   n8n_data:
