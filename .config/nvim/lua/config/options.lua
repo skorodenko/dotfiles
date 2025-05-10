@@ -26,3 +26,8 @@ vim.opt.expandtab = true
 vim.g.coq_settings = {
     auto_start = "shut-up",
 }
+
+-- virt text
+vim.diagnostic.config({
+  virtual_text = true,
+})

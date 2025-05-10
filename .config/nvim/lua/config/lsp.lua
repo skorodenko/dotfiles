@@ -50,9 +50,9 @@ lsp.lua_ls.setup(coq.lsp_ensure_capabilities({
 lsp.rust_analyzer.setup(coq.lsp_ensure_capabilities({
     settings = {
         ["rust"] = {
-            --            diagnostics = {
-            --                enable = false;
-            --            }
+            -- diagnostics = {
+            --     enable = true,
+            -- }
         }
     }
 }))

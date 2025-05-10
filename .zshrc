@@ -102,7 +102,7 @@ fi
 
 
 # tmux integration
-if [ -z "$TMUX" ] && ([ "$TERM" = "xterm-kitty" ] || [ "$TERM" = "alacritty" ]); then
+if [ -z "$TMUX" ] && [ "$TERM" = "xterm-kitty" ]; then
     cur_time=$(date +%s)
     exec tmux new-session -s $cur_time && exit $? && tmux kill-session -t $cur_time;
 fi
