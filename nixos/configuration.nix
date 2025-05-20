@@ -84,14 +84,16 @@
     extraGroups = [ "wheel" "networkmanager" ];
     shell = pkgs.zsh;
   };
-  home-manager.users.rinkuro = { pkgs, ... }: {
+  home-manager.users.rinkuro = { pkgs, lib, ... }: let 
+    upkgs = import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz") {};
+  in {
     # Zsh config
     programs.zsh = {
       enable = true;
       enableCompletion = true;
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
-
+	
       oh-my-zsh = {
         enable = true;
         theme = "refined";
@@ -115,6 +117,18 @@
       pkgs.fastfetch 
       pkgs.lazygit 
       pkgs.zoxide
+      pkgs.kitty
+      pkgs.wofi
+      pkgs.brightnessctl
+      
+      # Neovim deps
+      upkgs.neovim
+      pkgs.curl
+      pkgs.wget
+      pkgs.git
+      pkgs.unzip
+      pkgs.gnutar
+      pkgs.gzip
     ];
 
     home.stateVersion = "24.11";
@@ -122,6 +136,7 @@
 
   # Manage programs nixpkg
   programs.zsh.enable = true;
+  programs.hyprland.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
