@@ -1,13 +1,5 @@
 return {
     {
-        "zaldih/themery.nvim",
-        config = function()
-            require("themery").setup({
-                themes = { "onedark_dark", "onedark_vivid", "kanagawa-wave", "kanagawa-dragon", "kanagawa-lotus" }
-            })
-        end
-    },
-    {
         "olimorris/onedarkpro.nvim",
         priority = 1000,
         config = function()

@@ -15,6 +15,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "nixos"; # Define your hostname.
+  # hardware.bluetooth.enable = true;
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -44,11 +45,7 @@
 
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
-  services.xserver.enable = true;
-
-  # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
+  # services.xserver.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -60,7 +57,7 @@
   services.printing.enable = false;
 
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -75,6 +72,8 @@
     #media-session.enable = true;
   };
 
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
@@ -84,15 +83,24 @@
     extraGroups = [ "wheel" "networkmanager" ];
     shell = pkgs.zsh;
   };
-  home-manager.users.rinkuro = { pkgs, lib, ... }: let 
-    upkgs = import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz") {};
-  in {
+  home-manager.users.rinkuro = { pkgs, lib, config, ... }: {
     # Zsh config
     programs.zsh = {
       enable = true;
       enableCompletion = true;
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
+
+      shellAliases = {
+        la = "ls -la";
+        ll = "ls -l";
+      };
+
+      profileExtra = ''
+        if uwsm check may-start && uwsm select; then
+          exec uwsm start default
+        fi
+      '';
 	
       oh-my-zsh = {
         enable = true;
@@ -108,35 +116,126 @@
       history.path = "$HOME/.zsh_history";
     };    
 
+    # Neovim conifg
+    xdg.configFile."nvim/lua" = {
+      recursive = true;
+      source = ../.config/nvim/lua;
+    };
+    programs.neovim = {
+      enable = true;
+    
+      extraLuaConfig = ''
+        require("config.options")
+        require("config.autocmds")
+        require("lazy").setup({
+          performance = {
+            reset_packpath = false,
+            rtp = { reset = false, }
+          },
+          dev = {
+            path = "${pkgs.vimUtils.packDir config.programs.neovim.finalPackage.passthru.packpathDirs}/pack/myNeovimPackages/start",
+            patterns = {""},
+          },
+          install = {
+            missing = false,
+          },
+          spec = {
+            { import = "plugins" },
+          },
+        })
+        require("config.custom")
+        require("config.lsp")
+      '';  
+
+      plugins = with pkgs.vimPlugins; [
+        lazy-nvim
+
+	# autoclose
+        nvim-ts-autotag
+	autoclose-nvim
+        
+        # flash
+        flash-nvim
+
+        # lsp
+	coq_nvim
+        coq-artifacts
+	coq-thirdparty
+        nvim-lspconfig
+
+        # mini-icons
+        mini-icons
+
+	# telescope
+        telescope-nvim
+
+        # treesitter
+        nvim-treesitter
+	nvim-treesitter.withAllGrammars
+        
+        # cinascroll
+        cinnamon-nvim
+
+        # gitsigns
+        gitsigns-nvim
+
+        # lualine
+        lualine-nvim
+
+	# neo-tree
+        neo-tree-nvim
+
+        # themes
+        onedarkpro-nvim
+        kanagawa-nvim
+
+        # which-key
+        which-key-nvim
+       
+        # dashboard
+        dashboard-nvim
+
+        # indent
+        #! auto-indent-nvim
+        indent-blankline-nvim
+
+	# projects
+        #! neovim-project
+
+        # toggleterm
+        toggleterm-nvim
+      ];
+    };
+
     # Programs nixpkg
     programs.firefox.enable = true;
 
     # Packages nixpkg
-    home.packages = [ 
-      pkgs.htop 
-      pkgs.fastfetch 
-      pkgs.lazygit 
-      pkgs.zoxide
-      pkgs.kitty
-      pkgs.wofi
-      pkgs.brightnessctl
-      
-      # Neovim deps
-      upkgs.neovim
-      pkgs.curl
-      pkgs.wget
-      pkgs.git
-      pkgs.unzip
-      pkgs.gnutar
-      pkgs.gzip
+    home.packages = with pkgs; [ 
+      htop 
+      fastfetch 
+      lazygit 
+      zoxide
+      kitty
+      wofi
+      brightnessctl
+      stow
     ];
 
-    home.stateVersion = "24.11";
+    home.stateVersion = "25.05";
   };
 
-  # Manage programs nixpkg
   programs.zsh.enable = true;
-  programs.hyprland.enable = true;
+
+  programs.hyprland = {
+    enable = true;
+    withUWSM = true;
+  };
+
+  # UWSM config
+  programs.uwsm = {
+    enable = true;
+  };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -174,6 +273,6 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "24.11"; # Did you read the comment?
+  system.stateVersion = "25.05"; # Did you read the comment?
 
 }

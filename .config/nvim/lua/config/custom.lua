@@ -25,3 +25,8 @@ require("which-key").add({
     { "<leader>gr", "<cmd>Gitsigns reset_hunk<cr>",               desc = "Reset hunk" },
     { "<leader>gt", "<cmd>Gitsigns toggle_signs<cr>",             desc = "Toggle git signs" },
 })
+
+local ok, _ = pcall(vim.cmd, "colorscheme kanagawa-dragon")
+if not ok then
+  vim.cmd "colorscheme default" -- if the above fails, then use default
+end
