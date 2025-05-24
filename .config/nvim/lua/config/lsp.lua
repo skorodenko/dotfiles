@@ -30,6 +30,17 @@ lsp.ruff.setup(coq.lsp_ensure_capabilities({
 lsp.marksman.setup(coq.lsp_ensure_capabilities({}))
 
 
+lsp.nixd.setup(coq.lsp_ensure_capabilities({
+    settings = {
+        nixd = {
+            formatting = {
+                command = { "nixfmt" },
+            },
+        },
+    },
+}))
+
+
 lsp.lua_ls.setup(coq.lsp_ensure_capabilities({
     on_init = function(client)
         client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
@@ -59,7 +70,7 @@ lsp.rust_analyzer.setup(coq.lsp_ensure_capabilities({
 
 
 lsp.qmlls.setup(coq.lsp_ensure_capabilities({
-    cmd = { "qmlls6" }
+    cmd = { "qmlls", "-E" }
 }))
 
 
