@@ -1,0 +1,114 @@
+{ ... }:
+{
+  home-manager.users.rinkuro =
+    { pkgs, config, ... }:
+    {
+      # Neovim conifg
+      xdg.configFile."nvim/lua" = {
+        recursive = true;
+        source = ../.config/nvim/lua;
+      };
+      programs.neovim = {
+        enable = true;
+
+        viAlias = true;
+        vimAlias = true;
+
+        extraLuaConfig = ''
+          require("config.options")
+          require("config.autocmds")
+          require("lazy").setup({
+            performance = {
+              reset_packpath = false,
+              rtp = { reset = false, }
+            },
+            dev = {
+              path = "${pkgs.vimUtils.packDir config.programs.neovim.finalPackage.passthru.packpathDirs}/pack/myNeovimPackages/start",
+              patterns = {""},
+            },
+            install = {
+              missing = false,
+            },
+            spec = {
+              { import = "plugins" },
+            },
+          })
+          require("config.custom")
+          require("config.lsp")
+        '';
+
+        plugins = with pkgs.vimPlugins; [
+          lazy-nvim
+
+          # autoclose
+          nvim-ts-autotag
+          autoclose-nvim
+
+          # flash
+          flash-nvim
+
+          # lsp
+          coq_nvim
+          coq-artifacts
+          coq-thirdparty
+          nvim-lspconfig
+
+          # mini-icons
+          mini-icons
+
+          # telescope
+          telescope-nvim
+
+          # treesitter
+          nvim-treesitter
+          nvim-treesitter.withAllGrammars
+
+          # cinascroll
+          cinnamon-nvim
+
+          # gitsigns
+          gitsigns-nvim
+
+          # lualine
+          lualine-nvim
+
+          # neo-tree
+          neo-tree-nvim
+
+          # themes
+          onedarkpro-nvim
+          kanagawa-nvim
+
+          # which-key
+          which-key-nvim
+
+          # dashboard
+          dashboard-nvim
+
+          # indent
+          #! auto-indent-nvim
+          indent-blankline-nvim
+
+          # projects
+          #! neovim-project
+
+          # toggleterm
+          toggleterm-nvim
+        ];
+      };
+
+      # Packages nixpkg
+      home.packages = with pkgs; [
+        # Language servers
+        lua-language-server
+        nixd
+        nixfmt-rfc-style
+      ];
+
+      home.sessionVariables = {
+        EDITOR = "nvim";
+      };
+
+      home.stateVersion = "25.05";
+    };
+}

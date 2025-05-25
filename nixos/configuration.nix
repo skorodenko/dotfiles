@@ -6,11 +6,20 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ./neovim.nix
   ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
+  # Fix for rtw8822
+  boot.kernelModules = [
+    "rtw88"
+  ];
+  boot.extraModprobeConfig = ''
+    options rtw88_pci disable_aspm=1
+  '';
 
   networking.hostName = "nixos"; # Define your hostname.
   # hardware.bluetooth.enable = true;
@@ -104,12 +113,6 @@
           l = "eza -l";
         };
 
-        profileExtra = ''
-          if uwsm check may-start && uwsm select; then
-            exec uwsm start default
-          fi
-        '';
-
         oh-my-zsh = {
           enable = true;
           theme = "refined";
@@ -124,100 +127,6 @@
         history.path = "$HOME/.zsh_history";
       };
 
-      # Neovim conifg
-      xdg.configFile."nvim/lua" = {
-        recursive = true;
-        source = ../.config/nvim/lua;
-      };
-      programs.neovim = {
-        enable = true;
-
-        viAlias = true;
-        vimAlias = true;
-
-        extraLuaConfig = ''
-          require("config.options")
-          require("config.autocmds")
-          require("lazy").setup({
-            performance = {
-              reset_packpath = false,
-              rtp = { reset = false, }
-            },
-            dev = {
-              path = "${pkgs.vimUtils.packDir config.programs.neovim.finalPackage.passthru.packpathDirs}/pack/myNeovimPackages/start",
-              patterns = {""},
-            },
-            install = {
-              missing = false,
-            },
-            spec = {
-              { import = "plugins" },
-            },
-          })
-          require("config.custom")
-          require("config.lsp")
-        '';
-
-        plugins = with pkgs.vimPlugins; [
-          lazy-nvim
-
-          # autoclose
-          nvim-ts-autotag
-          autoclose-nvim
-
-          # flash
-          flash-nvim
-
-          # lsp
-          coq_nvim
-          coq-artifacts
-          coq-thirdparty
-          nvim-lspconfig
-
-          # mini-icons
-          mini-icons
-
-          # telescope
-          telescope-nvim
-
-          # treesitter
-          nvim-treesitter
-          nvim-treesitter.withAllGrammars
-
-          # cinascroll
-          cinnamon-nvim
-
-          # gitsigns
-          gitsigns-nvim
-
-          # lualine
-          lualine-nvim
-
-          # neo-tree
-          neo-tree-nvim
-
-          # themes
-          onedarkpro-nvim
-          kanagawa-nvim
-
-          # which-key
-          which-key-nvim
-
-          # dashboard
-          dashboard-nvim
-
-          # indent
-          #! auto-indent-nvim
-          indent-blankline-nvim
-
-          # projects
-          #! neovim-project
-
-          # toggleterm
-          toggleterm-nvim
-        ];
-      };
-
       # Packages nixpkg
       home.packages = with pkgs; [
         htop
@@ -229,11 +138,6 @@
         brightnessctl
         stow
         eza
-
-        # Language servers
-        lua-language-server
-        nixd
-        nixfmt-rfc-style
       ];
 
       home.stateVersion = "25.05";
@@ -253,8 +157,6 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  qt.enable = true;
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages =
@@ -264,15 +166,20 @@
       wget
       git
       wl-clipboard
-      kdePackages.qtdeclarative
+      kdePackages.full
+      #kdePackages.kirigami
+      #kdePackages.kirigami-addons
+      #kdePackages.kirigami-addons.dev
     ]
     ++ [
       quickshell.packages.${pkgs.system}.default
     ];
 
+  #qt.enable = true;
+
   environment.variables = {
-    EDITOR = "nvim";
     NIXOS_OZONE_WL = "1";
+    #QML2_IMPORT_PATH = "${pkgs.kdePackages.kirigami}/lib/qt-6/qml:$QML2_IMPORT_PATH";
   };
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -301,5 +208,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # Did you read the comment?
-
 }
