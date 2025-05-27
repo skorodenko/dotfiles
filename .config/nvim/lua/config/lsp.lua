@@ -27,6 +27,14 @@ lsp.ruff.setup(coq.lsp_ensure_capabilities({
 }))
 
 
+lsp.jsonls.setup(coq.lsp_ensure_capabilities({
+    cmd = { "vscode-json-languageserver", "--stdio" },
+    init_options = {
+        provideFormatter = true
+    },
+}))
+
+
 lsp.marksman.setup(coq.lsp_ensure_capabilities({}))
 
 

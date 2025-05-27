@@ -3,7 +3,6 @@ require("which-key").add({
     { "<leader>s",  group = "System" },
     { "<leader>sM", "<cmd>Mason<cr>",                             desc = "Open Mason" },
     { "<leader>sL", "<cmd>Lazy<cr>",                              desc = "Open Lazy" },
-    { "<leader>sT", "<cmd>Themery<cr>",                           desc = "Change theme" },
     { "<leader>st", "<cmd>ToggleTerm<cr>",                        desc = "Toggle terminal" },
     { "<leader>f",  group = "File" },
     { "<leader>ff", "<cmd>Telescope find_files<cr>",              desc = "Find files" },

@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ pkgs, quickshell, ... }:
+{ pkgs, ... }:
 {
   imports = [
     ./hardware-configuration.nix
@@ -92,12 +92,13 @@
     isNormalUser = true;
     extraGroups = [
       "wheel"
+      "input"
       "networkmanager"
     ];
     shell = pkgs.zsh;
   };
   home-manager.users.rinkuro =
-    { pkgs, config, ... }:
+    { pkgs, ... }:
     {
       # Zsh config
       programs.zsh = {
@@ -135,9 +136,13 @@
         zoxide
         kitty
         wofi
+        glances
         brightnessctl
         stow
         eza
+        wallust
+        hyprpaper
+        waypaper
       ];
 
       home.stateVersion = "25.05";
@@ -159,27 +164,16 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages =
-    with pkgs;
-    [
-      vim
-      wget
-      git
-      wl-clipboard
-      kdePackages.full
-      #kdePackages.kirigami
-      #kdePackages.kirigami-addons
-      #kdePackages.kirigami-addons.dev
-    ]
-    ++ [
-      quickshell.packages.${pkgs.system}.default
-    ];
-
-  #qt.enable = true;
+  environment.systemPackages = with pkgs; [
+    vim
+    wget
+    git
+    wl-clipboard
+    waybar
+  ];
 
   environment.variables = {
     NIXOS_OZONE_WL = "1";
-    #QML2_IMPORT_PATH = "${pkgs.kdePackages.kirigami}/lib/qt-6/qml:$QML2_IMPORT_PATH";
   };
 
   # Some programs need SUID wrappers, can be configured further or are

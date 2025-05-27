@@ -1,7 +1,7 @@
 return {
-    { 
+    {
         "williamboman/mason.nvim",
-	enabled = (vim.g.system_id ~= "nixos"),
+        enabled = (vim.g.system_id ~= "nixos"),
         config = function()
             require("mason").setup({
                 ui = {

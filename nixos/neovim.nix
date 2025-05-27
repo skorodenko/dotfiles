@@ -4,10 +4,10 @@
     { pkgs, config, ... }:
     {
       # Neovim conifg
-      xdg.configFile."nvim/lua" = {
-        recursive = true;
-        source = ../.config/nvim/lua;
-      };
+      #xdg.configFile."nvim/lua" = {
+      #recursive = true;
+      #source = ../.config/nvim/lua;
+      #};
       programs.neovim = {
         enable = true;
 
@@ -56,6 +56,9 @@
           # mini-icons
           mini-icons
 
+          # nvim-highlight-colors
+          nvim-highlight-colors
+
           # telescope
           telescope-nvim
 
@@ -103,6 +106,8 @@
         lua-language-server
         nixd
         nixfmt-rfc-style
+        nodePackages.vscode-json-languageserver
+        taplo
       ];
 
       home.sessionVariables = {
