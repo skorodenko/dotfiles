@@ -5,10 +5,16 @@
     "margin-right": 4,
     "modules-left": ["hyprland/window"],
     "modules-center": ["hyprland/workspaces#roman"],
-    "modules-right": ["custom/clock"],
+    "modules-right": ["hyprland/language", "custom/clock"],
     "reload_style_on_change": true,
-    "sway/window": {
-        "max-length": 50
+    "hyprland/window": {
+        "icon": true,
+        "icon-size": 22,
+        "max-length": 60
+    },
+    "hyprland/language": {
+        "format-en": "en",
+        "format-uk": "uk"
     },
     "custom/clock": {
         "interval": 60,

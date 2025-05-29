@@ -6,7 +6,7 @@
 }
 
 window#waybar {
-    background: @background;
+    background: alpha(@background, 0.75);
     border: 1px solid @color0;
 }
 
@@ -14,11 +14,16 @@ window#waybar {
     margin: 0px 8px;
 }
 
-.roclock {
-    margin: 6px 0px;
+.roclock, #language {
+    color: @cursor;
     padding: 0px 4px;
+    margin: 6px 4px;
     background-color: @color0;
     border: 1px solid @color5;
+}
+
+#window {
+    color: @cursor;
 }
 
 #workspaces {

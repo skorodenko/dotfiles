@@ -22,8 +22,16 @@
   '';
 
   networking.hostName = "nixos"; # Define your hostname.
-  # hardware.bluetooth.enable = true;
+  hardware.bluetooth.enable = true;
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+
+  # Block internal bluetooth module
+  services.udev = {
+    enable = true;
+    extraRules = ''
+      SUBSYSTEM=="usb", ATTRS{idVendor}=="0bda", ATTRS{idProduct}=="b023", ATTR{authorized}="0"
+    '';
+  };
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -37,7 +45,7 @@
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
-
+  i18n.supportedLocales = ["en_US.UTF-8/UTF-8" "uk_UA.UTF-8/UTF-8"];
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "en_US.UTF-8";
     LC_IDENTIFICATION = "en_US.UTF-8";
@@ -135,7 +143,7 @@
         lazygit
         zoxide
         kitty
-        wofi
+        rofi-wayland
         glances
         brightnessctl
         stow
@@ -143,6 +151,8 @@
         wallust
         hyprpaper
         waypaper
+        chromium
+        bluetuith
       ];
 
       home.stateVersion = "25.05";
@@ -170,6 +180,7 @@
     git
     wl-clipboard
     waybar
+    usbutils
   ];
 
   environment.variables = {
