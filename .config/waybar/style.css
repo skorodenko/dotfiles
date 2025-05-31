@@ -16,7 +16,7 @@ window#waybar {
 
 .roclock, #language {
     color: @cursor;
-    padding: 0px 4px;
+    padding: 0px 6px;
     margin: 6px 4px;
     background-color: @color0;
     border: 1px solid @color5;
@@ -28,6 +28,7 @@ window#waybar {
 
 #workspaces {
     margin: 6px 0px;
+    padding: 0px 6px;
     background-color: @color0;
     border: 1px solid @color5;
 }

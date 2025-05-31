@@ -45,7 +45,10 @@
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
-  i18n.supportedLocales = ["en_US.UTF-8/UTF-8" "uk_UA.UTF-8/UTF-8"];
+  i18n.supportedLocales = [
+    "en_US.UTF-8/UTF-8"
+    "uk_UA.UTF-8/UTF-8"
+  ];
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "en_US.UTF-8";
     LC_IDENTIFICATION = "en_US.UTF-8";
@@ -70,6 +73,9 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = false;
+
+  # Enable flatpak
+  services.flatpak.enable = true;
 
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
@@ -139,6 +145,7 @@
       # Packages nixpkg
       home.packages = with pkgs; [
         htop
+        rmpc
         fastfetch
         lazygit
         zoxide
@@ -146,12 +153,12 @@
         rofi-wayland
         glances
         brightnessctl
+        haruna
         stow
         eza
         wallust
         hyprpaper
         waypaper
-        chromium
         bluetuith
       ];
 
@@ -178,6 +185,7 @@
     vim
     wget
     git
+    uv
     wl-clipboard
     waybar
     usbutils
@@ -186,6 +194,24 @@
   environment.variables = {
     NIXOS_OZONE_WL = "1";
   };
+
+  services.mpd = {
+    enable = true;
+    musicDirectory = "/home/rinkuro/Music";
+    user = "rinkuro";
+    extraConfig = ''
+      audio_output {
+        type "pipewire"
+        name "My PipeWire Output"
+      }
+    '';
+  };
+
+  programs.nix-ld.enable = true;
+
+  #programs.nix-ld.libraries = with pkgs; [
+  #
+  #];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
