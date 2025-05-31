@@ -14,16 +14,26 @@ window#waybar {
     margin: 0px 8px;
 }
 
-.roclock, #language {
+#language, #bluetooth, #network, #wireplumber {
+    color: @cursor;
+    padding: 0px 4px;
+    margin: 6px 2px;
+    background-color: @color0;
+    border: 1px solid @color5;
+}
+
+.roclock {
     color: @cursor;
     padding: 0px 6px;
-    margin: 6px 4px;
+    margin: 6px 0px;
     background-color: @color0;
     border: 1px solid @color5;
 }
 
 #window {
     color: @cursor;
+    padding: 0px 6px;
+    margin: 6px 0px;
 }
 
 #workspaces {

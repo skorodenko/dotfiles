@@ -3,14 +3,18 @@
     "margin-top": 4,
     "margin-left": 4,
     "margin-right": 4,
-    "modules-left": ["hyprland/window"],
-    "modules-center": ["hyprland/workspaces#roman"],
-    "modules-right": ["hyprland/language", "custom/clock"],
+    "modules-left": ["hyprland/workspaces#roman", "hyprland/window"],
+    "modules-center": ["custom/clock"],
+    "modules-right": ["hyprland/language", "wireplumber", "bluetooth", "network"],
     "reload_style_on_change": true,
     "hyprland/window": {
-        "icon": true,
-        "icon-size": 22,
+        "format": "{title}",
         "max-length": 60
+    },
+    "wireplumber": {
+        "format": "{volume}% {icon}",
+        "format-muted": "",
+        "format-icons": ["", "", ""]
     },
     "hyprland/language": {
         "format-en": "en",
@@ -19,6 +23,27 @@
     "custom/clock": {
         "interval": 60,
         "exec": "~/.config/waybar/scripts/ro-date.sh"
+    },
+    "bluetooth": {
+        "format": " {status}",
+        "format-disabled": "", // an empty format will hide the module
+        "format-no-controller": "",
+        "format-connected": " {num_connections} connected",
+        "tooltip-format": "{controller_alias}\t{controller_address}",
+        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}"
+    },
+    "network": {
+        "interface": "wlp7s0",
+        "format": "{ifname}",
+        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-ethernet": "{ipaddr}/{cidr} 󰊗",
+        "format-disconnected": "", //An empty format will hide the module.
+        "tooltip-format": "{ifname} via {gwaddr} 󰊗",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+        "tooltip-format-ethernet": "{ifname} ",
+        "tooltip-format-disconnected": "Disconnected",
+        "max-length": 50
     },
     // ROMAN Numerals style
     "hyprland/workspaces#roman": {

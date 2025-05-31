@@ -160,6 +160,7 @@
         hyprpaper
         waypaper
         bluetuith
+        chromium
       ];
 
       home.stateVersion = "25.05";
