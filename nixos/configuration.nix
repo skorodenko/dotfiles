@@ -7,6 +7,7 @@
   imports = [
     ./hardware-configuration.nix
     ./neovim.nix
+    ./wireguard.nix
   ];
 
   # Bootloader.
@@ -23,7 +24,7 @@
 
   networking.hostName = "nixos"; # Define your hostname.
   hardware.bluetooth.enable = true;
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  hardware.bluetooth.powerOnBoot = false;
 
   # Block internal bluetooth module
   services.udev = {
@@ -61,15 +62,16 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  # Enable the X11 windowing system.
-  # You can disable this if you're only using the Wayland session.
-  # services.xserver.enable = true;
-
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
     variant = "";
   };
+
+  # Font config
+  fonts.packages = [
+    pkgs.nerd-fonts.iosevka
+  ];
 
   # Enable CUPS to print documents.
   services.printing.enable = false;
@@ -85,21 +87,12 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
   };
 
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
   ];
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
 
   # rinkuro user account setup
   users.users.rinkuro = {
@@ -142,6 +135,21 @@
         history.path = "$HOME/.zsh_history";
       };
 
+      # mpd config
+      services.mpd = {
+        enable = true;
+        musicDirectory = "~/Music";
+        network = {
+          startWhenNeeded = true;
+        };
+        extraConfig = ''
+          audio_output {
+                  type            "pipewire"
+                  name            "PipeWire Sound Server"
+          }
+        '';
+      };
+
       # Packages nixpkg
       home.packages = with pkgs; [
         htop
@@ -161,6 +169,8 @@
         waypaper
         bluetuith
         chromium
+        librewolf
+        floorp
       ];
 
       home.stateVersion = "25.05";
@@ -196,18 +206,6 @@
     NIXOS_OZONE_WL = "1";
   };
 
-  services.mpd = {
-    enable = true;
-    musicDirectory = "/home/rinkuro/Music";
-    user = "rinkuro";
-    extraConfig = ''
-      audio_output {
-        type "pipewire"
-        name "My PipeWire Output"
-      }
-    '';
-  };
-
   programs.nix-ld.enable = true;
 
   #programs.nix-ld.libraries = with pkgs; [
@@ -229,15 +227,9 @@
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
+  # networking.firewall.allowedUDPPorts = [ 51820 ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # Did you read the comment?
 }

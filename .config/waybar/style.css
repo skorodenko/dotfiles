@@ -1,6 +1,7 @@
 @import url("colors.css");
 
 * {
+    font-family: "Iosevka Nerd Font";
     border-radius: 4px;
     font-size: 14px;
 }
@@ -16,7 +17,7 @@ window#waybar {
 
 #language, #bluetooth, #network, #wireplumber {
     color: @cursor;
-    padding: 0px 4px;
+    padding: 0px 6px;
     margin: 6px 2px;
     background-color: @color0;
     border: 1px solid @color5;

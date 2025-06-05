@@ -21,10 +21,10 @@
     highlight_border_style: (fg: "blue"),
     symbols: (song: "S", dir: "D", marker: "M", ellipsis: "..."),
     progress_bar: (
-        symbols: ["-", ">", " "],
-        track_style: (fg: "#1e2030"),
-        elapsed_style: (fg: "blue"),
-        thumb_style: (fg: "blue", bg: "#1e2030"),
+        symbols: ["=", ">", " "],
+        //track_style: (fg: "#1e2030"),
+        //elapsed_style: (fg: "blue"),
+        //thumb_style: (fg: "blue", bg: "#1e2030"),
     ),
     scrollbar: (
         symbols: ["│", "█", "▲", "▼"],
@@ -34,16 +34,16 @@
     ),
     song_table_format: [
         (
-            prop: (kind: Property(Artist),
-                default: (kind: Text("Unknown"))
-            ),
-            width: "20%",
-        ),
-        (
             prop: (kind: Property(Title),
                 default: (kind: Text("Unknown"))
             ),
             width: "35%",
+        ),
+        (
+            prop: (kind: Property(Artist),
+                default: (kind: Text("Unknown"))
+            ),
+            width: "20%",
         ),
         (
             prop: (kind: Property(Album), style: (fg: "white"),
