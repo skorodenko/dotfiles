@@ -23,12 +23,8 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [
     "kvm-intel"
-    "rtw88"
   ];
   boot.extraModulePackages = [ ];
-  boot.extraModprobeConfig = ''
-    options rtw88_pci disable_aspm=1
-  '';
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/7520440f-30ad-47fd-abf2-8538161dc8b3";

@@ -8,9 +8,11 @@
         "10.8.0.3/32"
       ];
       dns = [
-        #"10.8.1.3"
+        "10.8.1.3"
         "192.168.0.220"
       ];
+
+      mtu = 1330;
       privateKeyFile = "/keys/wg0.key";
 
       peers = [
@@ -19,9 +21,10 @@
           presharedKeyFile = "/keys/wg0.preshared";
           allowedIPs = [
             "0.0.0.0/0"
+            "::/0"
           ];
           endpoint = "31.43.129.165:51820";
-          persistentKeepalive = 25;
+          persistentKeepalive = 21;
         }
       ];
     };

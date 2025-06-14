@@ -5,11 +5,15 @@
     "margin-right": 4,
     "modules-left": ["hyprland/workspaces#roman", "hyprland/window"],
     "modules-center": ["custom/clock"],
-    "modules-right": ["hyprland/language", "wireplumber", "bluetooth", "network"],
+    "modules-right": ["hyprland/language", "wireplumber", "backlight", "bluetooth", "network"],
     "reload_style_on_change": true,
     "hyprland/window": {
         "format": "{title}",
         "max-length": 60
+    },
+    "backlight": {
+        "format": "{icon} {percent}%",
+        "format-icons": ["", "", "", "", "", "", "", "", ""]
     },
     "wireplumber": {
         "format": "{volume}% {icon}",
