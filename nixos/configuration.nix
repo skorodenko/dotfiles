@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ pkgs, ... }:
+{ pkgs, quickshell, ... }:
 {
   imports = [
     ./hardware-configuration.nix
@@ -69,8 +69,10 @@
   };
 
   # Font config
-  fonts.packages = [
-    pkgs.nerd-fonts.iosevka
+  fonts.packages = with pkgs; [
+    ibm-plex
+    material-symbols
+    nerd-fonts.iosevka
   ];
 
   # Enable CUPS to print documents.
@@ -200,10 +202,15 @@
     wl-clipboard
     waybar
     usbutils
+    ripgrep
+    lm_sensors
+    kdePackages.qtdeclarative
+    quickshell.packages.${pkgs.system}.default
   ];
 
   environment.variables = {
     NIXOS_OZONE_WL = "1";
+    QML2_IMPORT_PATH = "$QML2_IMPORT_PATH:$HOME/.config";
   };
 
   programs.nix-ld.enable = true;
