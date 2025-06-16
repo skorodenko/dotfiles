@@ -1,0 +1,13 @@
+module quickshell.widgets
+CachingImage 1.0 CachingImage.qml
+Colouriser 1.0 Colouriser.qml
+CustomShortcut 1.0 CustomShortcut.qml
+MaterialIcon 1.0 MaterialIcon.qml
+StateLayer 1.0 StateLayer.qml
+StyledClippingRect 1.0 StyledClippingRect.qml
+StyledRect 1.0 StyledRect.qml
+StyledScrollBar 1.0 StyledScrollBar.qml
+StyledText 1.0 StyledText.qml
+StyledTextField 1.0 StyledTextField.qml
+StyledWindow 1.0 StyledWindow.qml
+VerticalSlider 1.0 VerticalSlider.qml

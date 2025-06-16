@@ -1,6 +1,6 @@
 pragma ComponentBehavior: Bound
 
-import "root:/widgets"
+import quickshell.widgets 1.0
 import quickshell.services 1.0
 import quickshell.utils 1.0
 import quickshell.config 1.0
@@ -477,7 +477,7 @@ Item {
                                 IconImage {
                                     id: currentIcon
 
-                                    source: Icons.getAppIcon(Players.active?.identity ?? "", "multimedia-player")
+                                    source: Icons.getAppIcon(Players.active?.identity ?? "", "media")
                                     implicitSize: Math.round(currentIdentity.implicitHeight * 0.9)
                                 }
 
