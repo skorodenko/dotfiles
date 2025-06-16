@@ -210,7 +210,7 @@
 
   environment.variables = {
     NIXOS_OZONE_WL = "1";
-    QML2_IMPORT_PATH = "$QML2_IMPORT_PATH:$HOME/.config";
+    QML2_IMPORT_PATH = "$QML2_IMPORT_PATH:$HOME/.config/quickshell";
   };
 
   programs.nix-ld.enable = true;

@@ -1,0 +1,10 @@
+module quickshell.config
+singleton Appearance 1.0 Appearance.qml
+singleton Config 1.0 Config.qml
+BarConfig 1.0 BarConfig.qml
+BorderConfig 1.0 BorderConfig.qml
+DashboardConfig 1.0 DashboardConfig.qml
+LauncherConfig 1.0 LauncherConfig.qml
+NotifsConfig 1.0 NotifsConfig.qml
+OsdConfig 1.0 OsdConfig.qml
+SessionConfig 1.0 SessionConfig.qml

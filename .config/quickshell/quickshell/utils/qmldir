@@ -1,0 +1,4 @@
+module quickshell.utils
+singleton Icons 1.0 Icons.qml
+singleton Paths 1.0 Paths.qml
+Fuzzy 1.0 fuzzysort.js
