@@ -15,7 +15,7 @@ export PATH="$PATH:$HOME/.local/bin"
 
 # Set alias for nvim
 if [[ $(command -v nvim) ]]; then
-    alias vim="/usr/bin/nvim"
+    alias vim="nvim"
 fi
 
 alias dbox="distrobox"
