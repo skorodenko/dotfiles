@@ -72,21 +72,21 @@ Item {
         anchors.bottom: parent.bottom
         anchors.horizontalCenter: parent.horizontalCenter
 
-        implicitWidth: Math.max(osIcon.implicitWidth, workspaces.implicitWidth, activeWindow.implicitWidth, tray.implicitWidth, clock.implicitWidth, statusIcons.implicitWidth, power.implicitWidth)
+        implicitWidth: Math.max(workspaces.implicitWidth, activeWindow.implicitWidth, tray.implicitWidth, clock.implicitWidth, statusIcons.implicitWidth, power.implicitWidth)
 
-        OsIcon {
-            id: osIcon
+        Clock {
+            id: clock
 
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: parent.top
-            anchors.topMargin: Appearance.padding.large
+            anchors.topMargin: Appearance.padding.normal
         }
 
         StyledRect {
             id: workspaces
 
+            anchors.top: clock.bottom
             anchors.horizontalCenter: parent.horizontalCenter
-            anchors.top: osIcon.bottom
             anchors.topMargin: Appearance.spacing.normal
 
             radius: Appearance.rounding.full
@@ -131,16 +131,8 @@ Item {
             id: tray
 
             anchors.horizontalCenter: parent.horizontalCenter
-            anchors.bottom: clock.top
-            anchors.bottomMargin: Appearance.spacing.larger
-        }
-
-        Clock {
-            id: clock
-
-            anchors.horizontalCenter: parent.horizontalCenter
             anchors.bottom: statusIcons.top
-            anchors.bottomMargin: Appearance.spacing.normal
+            anchors.bottomMargin: Appearance.spacing.larger
         }
 
         StyledRect {

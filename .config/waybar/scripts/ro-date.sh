@@ -17,6 +17,9 @@ rmonths["12"]="XII"
 
 read day mon year hr min <<< $(date +"%d %m %Y %H %M")
 
-echo "${day} ${rmonths[$mon]} ${year}  ${hr}:${min}"
+# Echo content
+echo "${day} ${rmonths[$mon]} | ${hr}:${min}"
+# Echo tooltip
 echo ""
+# Echo style-classname
 echo "roclock"

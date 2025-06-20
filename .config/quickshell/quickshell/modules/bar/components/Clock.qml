@@ -10,14 +10,14 @@ Column {
 
     spacing: Appearance.spacing.small
 
-    MaterialIcon {
-        id: icon
-
-        text: "calendar_month"
-        color: root.colour
-
-        anchors.horizontalCenter: parent.horizontalCenter
-    }
+//    MaterialIcon {
+//        id: icon
+//
+//        text: "calendar_month"
+//        color: root.colour
+//
+//        anchors.horizontalCenter: parent.horizontalCenter
+//    }
 
     StyledText {
         id: text
@@ -25,7 +25,7 @@ Column {
         anchors.horizontalCenter: parent.horizontalCenter
 
         horizontalAlignment: StyledText.AlignHCenter
-        text: Time.format("hh\nmm")
+        text: Time.format("dd/MM\nhh:mm")
         font.pointSize: Appearance.font.size.smaller
         font.family: Appearance.font.family.mono
         color: root.colour

@@ -39,16 +39,16 @@ Singleton {
         id: getDevices
 
         running: true
-        command: ["fish", "-c", `
-            for a in (bluetoothctl devices)
-                if string match -q 'Device *' $a
-                    bluetoothctl info $addr (string split ' ' $a)[2]
-                    echo
-                end
-            end`]
+        command: ["bash", "-c", `
+            devices=$(bluetoothctl devices | grep "Device" | awk '{print $2}')
+            for dmac in $devices
+            do
+                echo $(bluetoothctl info $dmac)
+            done
+        `]
         stdout: StdioCollector {
             onStreamFinished: {
-                const devices = text.trim().split("\n\n").map(d => ({
+                const devices = text.trim().split("\n").map(d => ({
                             name: d.match(/Name: (.*)/)[1],
                             alias: d.match(/Alias: (.*)/)[1],
                             address: d.match(/Device ([0-9A-Z:]{17})/)[1],

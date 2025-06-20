@@ -16,7 +16,6 @@ MouseArea {
 
     property bool osdHovered
     property point dragStart
-    property bool dashboardShortcutActive
     property bool osdShortcutActive
 
     function withinPanelHeight(panel: Item, x: real, y: real): bool {
@@ -44,9 +43,6 @@ MouseArea {
                 visibilities.osd = false;
                 osdHovered = false;
             }
-            if (!dashboardShortcutActive) {
-                visibilities.dashboard = false;
-            }
             popouts.hasCurrent = false;
         }
     }
@@ -59,14 +55,14 @@ MouseArea {
         const showOsd = inRightPanel(panels.osd, x, y);
 
         // Always update visibility based on hover if not in shortcut mode
-        if (!osdShortcutActive) {
-            visibilities.osd = showOsd;
-            osdHovered = showOsd;
-        } else if (showOsd) {
-            // If hovering over OSD area while in shortcut mode, transition to hover control
-            osdShortcutActive = false;
-            osdHovered = true;
-        }
+//        if (!osdShortcutActive) {
+//            visibilities.osd = showOsd;
+//            osdHovered = showOsd;
+//        } else if (showOsd) {
+//            // If hovering over OSD area while in shortcut mode, transition to hover control
+//            osdShortcutActive = false;
+//            osdHovered = true;
+//        }
 
         // Show/hide session on drag
         if (pressed && withinPanelHeight(panels.session, x, y)) {
@@ -75,17 +71,6 @@ MouseArea {
                 visibilities.session = true;
             else if (dragX > Config.session.dragThreshold)
                 visibilities.session = false;
-        }
-
-        // Show dashboard on hover
-        const showDashboard = inTopPanel(panels.dashboard, x, y);
-
-        // Always update visibility based on hover if not in shortcut mode
-        if (!dashboardShortcutActive) {
-            visibilities.dashboard = showDashboard;
-        } else if (showDashboard) {
-            // If hovering over dashboard area while in shortcut mode, transition to hover control
-            dashboardShortcutActive = false;
         }
 
         // Show popouts on hover
@@ -106,35 +91,15 @@ MouseArea {
         target: root.visibilities
 
         function onLauncherChanged() {
-            // If launcher is hidden, clear shortcut flags for dashboard and OSD
             if (!root.visibilities.launcher) {
-                root.dashboardShortcutActive = false;
                 root.osdShortcutActive = false;
 
-                // Also hide dashboard and OSD if they're not being hovered
-                const inDashboardArea = root.inTopPanel(root.panels.dashboard, root.mouseX, root.mouseY);
                 const inOsdArea = root.inRightPanel(root.panels.osd, root.mouseX, root.mouseY);
 
-                if (!inDashboardArea) {
-                    root.visibilities.dashboard = false;
-                }
                 if (!inOsdArea) {
                     root.visibilities.osd = false;
                     root.osdHovered = false;
                 }
-            }
-        }
-
-        function onDashboardChanged() {
-            if (root.visibilities.dashboard) {
-                // Dashboard became visible, immediately check if this should be shortcut mode
-                const inDashboardArea = root.inTopPanel(root.panels.dashboard, root.mouseX, root.mouseY);
-                if (!inDashboardArea) {
-                    root.dashboardShortcutActive = true;
-                }
-            } else {
-                // Dashboard hidden, clear shortcut flag
-                root.dashboardShortcutActive = false;
             }
         }
 

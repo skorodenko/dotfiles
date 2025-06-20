@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ pkgs, quickshell, ... }:
+{ pkgs, ... }:
 {
   imports = [
     ./hardware-configuration.nix
@@ -180,10 +180,7 @@
 
   programs.zsh.enable = true;
   programs.firefox.enable = true;
-
-  programs.hyprland = {
-    enable = true;
-  };
+  programs.hyprland.enable = true;
 
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.wayland.enable = true;
@@ -204,8 +201,8 @@
     usbutils
     ripgrep
     lm_sensors
+    ddcutil
     kdePackages.qtdeclarative
-    quickshell.packages.${pkgs.system}.default
   ];
 
   environment.variables = {
@@ -214,10 +211,11 @@
   };
 
   programs.nix-ld.enable = true;
-
-  #programs.nix-ld.libraries = with pkgs; [
-  #
-  #];
+  programs.nix-ld.libraries = with pkgs; [
+    zlib
+    libGL
+    glib
+  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -234,7 +232,7 @@
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ 51820 ];
+  # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 

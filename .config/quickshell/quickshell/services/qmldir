@@ -3,7 +3,6 @@ singleton Apps 1.0 Apps.qml
 singleton Audio 1.0 Audio.qml
 singleton Bluetooth 1.0 Bluetooth.qml
 singleton Brightness 1.0 Brightness.qml
-singleton Cava 1.0 Cava.qml
 singleton Colours 1.0 Colours.qml
 singleton Hyprland 1.0 Hyprland.qml
 singleton Network 1.0 Network.qml
@@ -13,4 +12,3 @@ singleton SystemUsage 1.0 SystemUsage.qml
 singleton Time 1.0 Time.qml
 singleton Visibilities 1.0 Visibilities.qml
 singleton Wallpapers 1.0 Wallpapers.qml
-singleton Weather 1.0 Weather.qml

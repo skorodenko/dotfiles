@@ -9,11 +9,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    quickshell = {
-      url = "github:quickshell-mirror/quickshell/703a3789083d2f990c4e99cd25c97c2a4cccbd81";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware/master";
     };
@@ -24,9 +19,8 @@
       nixpkgs,
       home-manager,
       nixos-hardware,
-      quickshell,
       ...
-    }:
+    } @ inputs:
     let
       system = "x86_64-linux";
     in
@@ -34,7 +28,7 @@
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         inherit system;
 
-        specialArgs = { inherit quickshell; };
+        specialArgs = { inherit inputs; };
 
         modules = [
           home-manager.nixosModules.home-manager

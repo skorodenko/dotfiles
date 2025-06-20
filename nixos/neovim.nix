@@ -89,11 +89,7 @@
           dashboard-nvim
 
           # indent
-          #! auto-indent-nvim
           indent-blankline-nvim
-
-          # projects
-          #! neovim-project
 
           # toggleterm
           toggleterm-nvim
@@ -103,6 +99,8 @@
       # Packages nixpkg
       home.packages = with pkgs; [
         # Language servers
+        pyright
+        ruff
         lua-language-server
         nixd
         nixfmt-rfc-style

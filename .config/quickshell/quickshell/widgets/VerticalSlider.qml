@@ -119,7 +119,7 @@ Slider {
     Timer {
         id: stateChangeDelay
 
-        interval: 500
+        interval: 100
         onTriggered: {
             if (!root.pressed)
                 handle.moving = false;

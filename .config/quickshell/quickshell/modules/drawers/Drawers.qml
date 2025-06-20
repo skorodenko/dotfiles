@@ -115,7 +115,6 @@ Variants {
                 property bool osd
                 property bool session
                 property bool launcher
-                property bool dashboard
 
                 Component.onCompleted: Visibilities.screens[scope.modelData] = this
             }
