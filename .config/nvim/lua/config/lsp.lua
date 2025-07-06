@@ -70,17 +70,16 @@ lsp.rust_analyzer.setup(coq.lsp_ensure_capabilities({
     filetypes = {"rust", "ron"},
     settings = {
         ["rust"] = {
-            -- diagnostics = {
-            --     enable = true,
-            -- }
+            diagnostics = {
+                enable = false,
+            }
         }
     }
 }))
 
 
 lsp.qmlls.setup(coq.lsp_ensure_capabilities({
-    cmd = { "qmlls", "-E" },
-    single_file_support = false,
+    cmd = { "qmlls6", "-E" }
 }))
 
 
