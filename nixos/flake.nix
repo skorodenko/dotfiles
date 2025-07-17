@@ -9,6 +9,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    plasma-manager = {
+      url = "github:nix-community/plasma-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
+
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware/master";
     };
@@ -19,8 +25,9 @@
       nixpkgs,
       home-manager,
       nixos-hardware,
+      plasma-manager,
       ...
-    } @ inputs:
+    }@inputs:
     let
       system = "x86_64-linux";
     in
@@ -32,8 +39,13 @@
 
         modules = [
           home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.sharedModules = [ plasma-manager.homeManagerModules.plasma-manager ];
+          }
           nixos-hardware.nixosModules.lenovo-legion-y530-15ich
-          ./configuration.nix
+          ./root.nix
         ];
       };
     };

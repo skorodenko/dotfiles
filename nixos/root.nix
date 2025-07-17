@@ -6,8 +6,7 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ./neovim.nix
-    ./wireguard.nix
+    ./rinkuro.nix
   ];
 
   # Bootloader.
@@ -106,81 +105,9 @@
     ];
     shell = pkgs.zsh;
   };
-  home-manager.users.rinkuro =
-    { pkgs, ... }:
-    {
-      # Zsh config
-      programs.zsh = {
-        enable = true;
-        enableCompletion = true;
-        autosuggestion.enable = true;
-        syntaxHighlighting.enable = true;
-
-        shellAliases = {
-          ls = "eza";
-          la = "eza -la";
-          ll = "eza -lh";
-          l = "eza -l";
-        };
-
-        oh-my-zsh = {
-          enable = true;
-          theme = "refined";
-          plugins = [
-            "git"
-            "zoxide"
-          ];
-        };
-
-        history.size = 10000;
-        history.ignoreAllDups = true;
-        history.path = "$HOME/.zsh_history";
-      };
-
-      # mpd config
-      services.mpd = {
-        enable = true;
-        musicDirectory = "~/Music";
-        network = {
-          startWhenNeeded = true;
-        };
-        extraConfig = ''
-          audio_output {
-                  type            "pipewire"
-                  name            "PipeWire Sound Server"
-          }
-        '';
-      };
-
-      # Packages nixpkg
-      home.packages = with pkgs; [
-        htop
-        rmpc
-        fastfetch
-        lazygit
-        zoxide
-        kitty
-        rofi-wayland
-        glances
-        brightnessctl
-        haruna
-        stow
-        eza
-        wallust
-        hyprpaper
-        waypaper
-        bluetuith
-        chromium
-        librewolf
-        floorp
-      ];
-
-      home.stateVersion = "25.05";
-    };
 
   programs.zsh.enable = true;
   programs.firefox.enable = true;
-  programs.hyprland.enable = true;
 
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.wayland.enable = true;
@@ -197,7 +124,6 @@
     git
     uv
     wl-clipboard
-    waybar
     usbutils
     ripgrep
     lm_sensors
@@ -207,15 +133,14 @@
 
   environment.variables = {
     NIXOS_OZONE_WL = "1";
-    QML2_IMPORT_PATH = "$QML2_IMPORT_PATH:$HOME/.config/quickshell";
   };
 
-  programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = with pkgs; [
-    zlib
-    libGL
-    glib
-  ];
+  #  programs.nix-ld.enable = true;
+  #  programs.nix-ld.libraries = with pkgs; [
+  #    zlib
+  #    libGL
+  #    glib
+  #  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
