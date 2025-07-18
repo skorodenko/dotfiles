@@ -135,6 +135,8 @@
     NIXOS_OZONE_WL = "1";
   };
 
+  programs.ssh.startAgent = true;
+
   #  programs.nix-ld.enable = true;
   #  programs.nix-ld.libraries = with pkgs; [
   #    zlib

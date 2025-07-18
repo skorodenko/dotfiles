@@ -68,6 +68,7 @@
         chromium
         librewolf
         floorp
+        tmux
       ];
 
       home.stateVersion = "25.05";
