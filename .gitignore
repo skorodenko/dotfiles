@@ -1,3 +1,4 @@
 .config/xournalpp/metadata
 .local/bin/poetry
 .env
+hardware-configuration.nix
