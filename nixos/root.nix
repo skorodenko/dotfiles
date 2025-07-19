@@ -77,9 +77,6 @@
   # Enable CUPS to print documents.
   services.printing.enable = false;
 
-  # Enable flatpak
-  services.flatpak.enable = true;
-
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -107,7 +104,6 @@
   };
 
   programs.zsh.enable = true;
-  programs.firefox.enable = true;
 
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.wayland.enable = true;

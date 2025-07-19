@@ -5,6 +5,7 @@
     {
       imports = [
         ./plasma.home.nix
+        ./firefox.home.nix
         ./neovim.home.nix
       ];
 
@@ -65,9 +66,6 @@
         stow
         eza
         bluetuith
-        chromium
-        librewolf
-        floorp
         tmux
       ];
 

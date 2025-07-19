@@ -42,7 +42,9 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.sharedModules = [ plasma-manager.homeManagerModules.plasma-manager ];
+            home-manager.sharedModules = [
+              plasma-manager.homeManagerModules.plasma-manager
+            ];
           }
           nixos-hardware.nixosModules.lenovo-legion-y530-15ich
           ./root.nix

@@ -79,6 +79,13 @@
       kdeglobals.General = {
         accentColorFromWallpaper = true;
       };
+
+      dolphinrc = {
+        DetailsMode.ExpandableFolders = false;
+        MainWindow.MenuBar = "Disabled";
+        General.ShowFullPath = true;
+        General.ShowStatusBar = "FullWidth";
+      };
     };
 
     fonts = {
@@ -113,6 +120,7 @@
         height = 40;
         location = "bottom";
         floating = true;
+        opacity = "adaptive";
         widgets = [
           {
             pager.general = {
