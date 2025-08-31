@@ -6,6 +6,7 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ./wireguard.nix
     ./rinkuro.nix
   ];
 
@@ -39,6 +40,8 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+
+  powerManagement.cpufreq.max = 2600000;
 
   # Set your time zone.
   time.timeZone = "Europe/Kyiv";

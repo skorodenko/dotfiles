@@ -5,7 +5,7 @@
     {
       imports = [
         ./plasma.home.nix
-        ./firefox.home.nix
+        ./browsers.home.nix
         ./neovim.home.nix
       ];
 
@@ -55,7 +55,7 @@
       # Packages nixpkg
       home.packages = with pkgs; [
         htop
-        rmpc
+        devenv
         fastfetch
         lazygit
         zoxide
@@ -65,7 +65,6 @@
         haruna
         stow
         eza
-        bluetuith
         tmux
       ];
 

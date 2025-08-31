@@ -79,7 +79,7 @@ lsp.rust_analyzer.setup(coq.lsp_ensure_capabilities({
 
 
 lsp.qmlls.setup(coq.lsp_ensure_capabilities({
-    cmd = { "qmlls6", "-E" }
+    cmd = { "qmlls", "-E" }
 }))
 
 
