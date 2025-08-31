@@ -66,16 +66,34 @@ lsp.lua_ls.setup(coq.lsp_ensure_capabilities({
 }))
 
 
-lsp.rust_analyzer.setup(coq.lsp_ensure_capabilities({
-    filetypes = {"rust", "ron"},
-    settings = {
-        ["rust"] = {
-            diagnostics = {
-                enable = false,
-            }
-        }
-    }
-}))
+--lsp.rust_analyzer.setup(coq.lsp_ensure_capabilities({
+--    filetypes = { "rust", "ron" },
+--    settings = {
+--        ["rust"] = {
+--            diagnostics = {
+--                enable = false,
+--            },
+--            imports = {
+--                granularity = {
+--                    group = "module",
+--                },
+--                prefix = "self",
+--            },
+--            cachePriming = {
+--                enable = true,
+--                numThreads = 0,
+--            },
+--            cargo = {
+--                buildScripts = {
+--                    enable = true,
+--                },
+--            },
+--            procMacro = {
+--                enable = true,
+--            }
+--        },
+--    }
+--}))
 
 
 lsp.qmlls.setup(coq.lsp_ensure_capabilities({
