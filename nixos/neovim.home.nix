@@ -86,6 +86,9 @@
 
       # toggleterm
       toggleterm-nvim
+
+      # rust
+      rustaceanvim
     ];
   };
 

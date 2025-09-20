@@ -18,6 +18,10 @@
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware/master";
     };
+
+    nix-flatpak = {
+      url = "github:gmodena/nix-flatpak/?ref=v0.6.0";
+    };
   };
 
   outputs =
@@ -26,6 +30,7 @@
       home-manager,
       nixos-hardware,
       plasma-manager,
+      nix-flatpak,
       ...
     }@inputs:
     let
@@ -44,6 +49,7 @@
             home-manager.useUserPackages = true;
             home-manager.sharedModules = [
               plasma-manager.homeManagerModules.plasma-manager
+              nix-flatpak.homeManagerModules.nix-flatpak
             ];
           }
           nixos-hardware.nixosModules.lenovo-legion-y530-15ich

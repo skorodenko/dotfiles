@@ -43,6 +43,13 @@
 
   powerManagement.cpufreq.max = 2600000;
 
+  # Nvidia settings
+  hardware.graphics.enable = true;
+  hardware.nvidia.prime = {
+    nvidiaBusId = "PCI:1:0:0";
+    intelBusId = "PCI:0:2:0";
+  };
+
   # Set your time zone.
   time.timeZone = "Europe/Kyiv";
 
@@ -102,11 +109,14 @@
       "wheel"
       "input"
       "networkmanager"
+      "libvirtd"
     ];
     shell = pkgs.zsh;
   };
 
   programs.zsh.enable = true;
+
+  services.flatpak.enable = true;
 
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.wayland.enable = true;
@@ -114,6 +124,11 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+
+  # Virt manager
+  programs.virt-manager.enable = true;
+  virtualisation.libvirtd.enable = true;
+  virtualisation.spiceUSBRedirection.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -128,6 +143,7 @@
     lm_sensors
     ddcutil
     kdePackages.qtdeclarative
+    nvtopPackages.nvidia
   ];
 
   environment.variables = {
@@ -157,7 +173,7 @@
   # services.openssh.enable = true;
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
+  networking.firewall.allowedTCPPorts = [ 22000 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;

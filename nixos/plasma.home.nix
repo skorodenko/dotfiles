@@ -28,11 +28,15 @@
         "Switch to Desktop 3" = "Meta+3";
         "Switch to Desktop 4" = "Meta+4";
         "Switch to Desktop 5" = "Meta+5";
+        "Switch to Desktop 6" = "Meta+6";
+        "Switch to Desktop 7" = "Meta+7";
         "Window to Desktop 1" = "Meta+!";
         "Window to Desktop 2" = "Meta+@";
         "Window to Desktop 3" = "Meta+#";
         "Window to Desktop 4" = "Meta+$";
         "Window to Desktop 5" = "Meta+%";
+        "Window to Desktop 6" = "Meta+^";
+        "Window to Desktop 7" = "Meta+&";
         "KrohnkiteFocusLeft" = "Meta+Left";
         "KrohnkiteFocusRight" = "Meta+Right";
         "KrohnkiteFocusUp" = "Meta+Up";
@@ -61,7 +65,9 @@
         Name_3 = "III";
         Name_4 = "IV";
         Name_5 = "V";
-        Number = 5;
+        Name_6 = "VI";
+        Name_7 = "VII";
+        Number = 7;
         Rows = 1;
       };
       kwinrc."Effect-slide".SlideBackground = false;
@@ -78,6 +84,43 @@
 
       kdeglobals.General = {
         accentColorFromWallpaper = true;
+      };
+
+      krunnerrc = {
+        General = {
+          ActivateWhenTypingOnDesktop = false;
+          FreeFloating = true;
+          historyBehavior = "Disabled";
+        };
+        Plugins = {
+          baloosearchEnabled = false;
+          browserhistoryEnabled = false;
+          browsertabsEnabled = false;
+          calculatorEnabled = false;
+          helprunnerEnabled = false;
+          krunner_appstreamEnabled = false;
+          krunner_bookmarksrunnerEnabled = false;
+          krunner_charrunnerEnabled = false;
+          krunner_dictionaryEnabled = false;
+          krunner_katesessionsEnabled = false;
+          krunner_killEnabled = false;
+          krunner_konsoleprofilesEnabled = false;
+          krunner_kwinEnabled = false;
+          krunner_placesrunnerEnabled = false;
+          krunner_plasma-desktopEnabled = false;
+          krunner_powerdevilEnabled = false;
+          krunner_recentdocumentsEnabled = false;
+          krunner_sessionsEnabled = true;
+          krunner_shellEnabled = false;
+          krunner_spellcheckEnabled = false;
+          krunner_systemsettingsEnabled = false;
+          krunner_webshortcutsEnabled = false;
+          locationsEnabled = false;
+          "org.kde.activities2Enabled" = false;
+          "org.kde.datetimeEnabled" = false;
+          unitconverterEnabled = false;
+          windowsEnabled = false;
+        };
       };
 
       dolphinrc = {

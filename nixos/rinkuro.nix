@@ -7,6 +7,7 @@
         ./plasma.home.nix
         ./browsers.home.nix
         ./neovim.home.nix
+        ./flatpak.home.nix
       ];
 
       # Zsh config
@@ -66,6 +67,8 @@
         stow
         eza
         tmux
+        syncthing
+        qbittorrent
       ];
 
       home.stateVersion = "25.05";
