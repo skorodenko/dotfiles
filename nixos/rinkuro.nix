@@ -66,7 +66,6 @@
         haruna
         stow
         eza
-        tmux
         syncthing
         qbittorrent
       ];
