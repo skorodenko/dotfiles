@@ -3,7 +3,6 @@ require("which-key").add({
     { "<leader>s",  group = "System" },
     { "<leader>sM", "<cmd>Mason<cr>",                             desc = "Open Mason" },
     { "<leader>sL", "<cmd>Lazy<cr>",                              desc = "Open Lazy" },
-    { "<leader>st", "<cmd>ToggleTerm<cr>",                        desc = "Toggle terminal" },
     { "<leader>f",  group = "File" },
     { "<leader>ff", "<cmd>Telescope find_files<cr>",              desc = "Find files" },
     { "<leader>fb", "<cmd>Telescope buffers<cr>",                 desc = "Find buffer" },
@@ -23,9 +22,11 @@ require("which-key").add({
     { "<leader>gp", "<cmd>Gitsigns preview_hunk<cr>",             desc = "Preview hunk" },
     { "<leader>gr", "<cmd>Gitsigns reset_hunk<cr>",               desc = "Reset hunk" },
     { "<leader>gt", "<cmd>Gitsigns toggle_signs<cr>",             desc = "Toggle git signs" },
+    { "<leader>t",  group = "Trouble" },
+    { "<leader>tt", "<cmd>Trouble diagnostics toggle<cr>",        desc = "Toggle diagnostics" },
 })
 
 local ok, _ = pcall(vim.cmd, "colorscheme kanagawa-dragon")
 if not ok then
-  vim.cmd "colorscheme default" -- if the above fails, then use default
+    vim.cmd "colorscheme default" -- if the above fails, then use default
 end
