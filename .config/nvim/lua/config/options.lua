@@ -24,7 +24,7 @@ vim.opt.expandtab = true
 
 -- virt text
 vim.diagnostic.config({
-  virtual_text = false,
+  virtual_text = true,
 })
 
 -- nixos flag
